@@ -19,10 +19,10 @@ C_FLAGS += -Wstrict-prototypes
 C_FLAGS += -Wundef
 C_FLAGS += -Wold-style-definition
 
-TARGET_BASE1=vector
+TARGET_BASE1=vectortest
 TARGET1 = $(TARGET_BASE1).out
-SRC_FILES1=$(UNITY_ROOT)/unity.c vector.c
-INC_DIRS=-I. -I$(UNITY_ROOT)/src -I$(OMAACS_NUM_ROOT)
+SRC_FILES1=vectortest.c $(UNITY_ROOT)/unity.c  $(OMAACS_NUM_ROOT)/vector.c
+INC_DIRS=-I. -I$(UNITY_ROOT) -I$(OMAACS_NUM_ROOT) -I..
 
 BIN_DIR=../build
 
@@ -35,7 +35,7 @@ clean:
 	@rm -f $(BIN_DIR)/$(TARGET1)
 
 build:
-	@$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) -o $(BIN_DIR)/$(TARGET1)
+	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) -o $(BIN_DIR)/$(TARGET1)
 
 run:
 	@$(BIN_DIR)/$(TARGET1)
