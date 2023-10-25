@@ -1,10 +1,10 @@
-all: run_testingtesting run_vector
-
+all: run_testingtesting run_vector run_numerics
 
 run_testingtesting:
-	echo "Running testingtesting\n"
-	$(MAKE) -C Tests/testingtesting
+	@$(MAKE) -C Tests/testingtesting
 
 run_vector:
-	echo "Running vector\n"
-	$(MAKE) -C Tests/vector
+	@$(MAKE) -C Tests/vector
+
+run_numerics:
+	@$(MAKE) -C Tests/numerics

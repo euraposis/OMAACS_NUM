@@ -19,9 +19,9 @@ C_FLAGS += -Wstrict-prototypes
 C_FLAGS += -Wundef
 C_FLAGS += -Wold-style-definition
 
-TARGET_BASE1=vector
+TARGET_BASE1=numerics
 TARGET1 = $(TARGET_BASE1).out
-SRC_FILES1=$(UNITY_ROOT)/unity.c vector.c
+SRC_FILES1=$(UNITY_ROOT)/unity.c numerics.c
 INC_DIRS=-I. -I$(UNITY_ROOT)/src -I$(OMAACS_NUM_ROOT)
 
 BIN_DIR=../build
@@ -32,7 +32,7 @@ name_test:
 	@echo "\nRunning $(TARGET_BASE1) Test\n"
 
 clean:
-	@rm -f $(BIN_DIR)/$(TARGET1)
+	@rm -f $(BIN_DIR)$(TARGET1)
 
 build:
 	@$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) -o $(BIN_DIR)/$(TARGET1)
