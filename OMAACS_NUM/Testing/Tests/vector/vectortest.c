@@ -1,4 +1,11 @@
-
+/**
+ * @file vectortest.c
+ * @brief Test file for vector operations
+ * 
+ * @author David Heine <david.heine@magenta.de>
+ * @date 2021-02-24
+ * 
+*/
 #include "../../Unity/src/unity.h"
 #include "../../../src/vector.h"
 

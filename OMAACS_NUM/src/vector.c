@@ -1,3 +1,12 @@
+/**
+ * @file vectortest.c
+ * @brief Vector operations
+ * 
+ * @author David Heine <david.heine@magenta.de>
+ * @date 2021-02-24
+ * 
+*/
+
 #include "vector.h"
 #include "math.h"
 

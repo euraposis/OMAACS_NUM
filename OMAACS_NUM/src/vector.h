@@ -1,3 +1,11 @@
+/**
+ * @file vectortest.c
+ * @brief vector definitions
+ * 
+ * @author David Heine <david.heine@magenta.de>
+ * @date 2021-02-24
+ * 
+*/
 #ifndef OMAACS_NUM_VECTOR_H
 #define OMAACS_NUM_VECTOR_H
 
