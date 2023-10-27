@@ -51,26 +51,43 @@ void test_exp(){
 }
 
 /**
- * setup the ode dy/dt = sin(x);
+ * setup the ode d²y/dt² = x;
 */
+
+struct statespace{
+  double x;
+  double v;
+};
+
+void statespace_prop(void* result, void* state, void* direction, double dt)
+{
+  ((struct statespace*)result)->x = ((struct statespace*)state)->x + ((struct statespace*)direction)->x * dt;
+  ((struct statespace*)result)->v = ((struct statespace*)state)->v + ((struct statespace*)direction)->v * dt;
+}
 
 void sin_lhs(void* res, void* state, double t)
 {
-  ((teststate*)res)->x = cos(((teststate*)state)->x);
+  ((struct statespace*)res)->x = ((struct statespace*)state)->v;
+  ((struct statespace*)res)->v = -((struct statespace*)state)->x;
 }
 
 void test_sin()
 {
-  teststate s;
-  s.x = 0.0;
   ode desc;
-  desc.state = malloc(sizeof(teststate));
-  ((teststate*)desc.state)->x = s.x;
+  desc.state = malloc(sizeof(struct statespace));
+  ((struct statespace*)desc.state)->x = 0.0;
+  ((struct statespace*)desc.state)->v = 1.0;
   desc.lhs_pointer = sin_lhs;
-  desc.propagator = teststate_prop;
-  desc.state_size = sizeof(teststate);
-  for(unsigned int i = 0; i < 100000000; i++)
-    explicite_euler_cauchy(&desc, 0, 0.00000001);
+  desc.propagator = statespace_prop;
+  desc.state_size = sizeof(struct statespace);
+
+  FILE* out_file = fopen("../output_data/test_sin.dat", "w");
+  for(unsigned int i = 0; i < 10000; i++)
+  {
+    explicite_euler_cauchy(&desc, 0, 0.001);
+    fprintf(out_file, "%f %f\n", i * 0.001, ((teststate*)desc.state)->x);
+  }
+  fclose(out_file);
   TEST_ASSERT_DOUBLE_WITHIN(0.001, sin(1.0), (((teststate*)desc.state)->x));
 }
 
