@@ -10,7 +10,7 @@
 #include "vector.h"
 #include "math.h"
 
-vector_2 vector_2_init(double x, double y)
+vector_2 vector_2_init(long double x, long double y)
 {
   vector_2 res;
   res.x = x;
@@ -42,7 +42,7 @@ vector_2 vector_2_sub(vector_2 a, vector_2 b)
   return res;
 }
 
-vector_2 vector_2_scale(vector_2 a, double b)
+vector_2 vector_2_scale(vector_2 a, long double b)
 {
   vector_2 res;
   res.x = a.x * b;
@@ -50,26 +50,26 @@ vector_2 vector_2_scale(vector_2 a, double b)
   return res;
 }
 
-double vector_2_dot(vector_2 a, vector_2 b)
+long double vector_2_dot(vector_2 a, vector_2 b)
 {
-  return (double) a.x * b.x + a.y * b.y;
+  return (long double) a.x * b.x + a.y * b.y;
 }
 
-double vector_2_mag(vector_2 a)
+long double vector_2_mag(vector_2 a)
 {
   return sqrt(vector_2_dot(a, a));
 }
 
 vector_2 vector_2_norm(vector_2 a)
 {
-  double mag = vector_2_mag(a);
+  long double mag = vector_2_mag(a);
   if (mag <= 1e-8)
     return a;
   return vector_2_scale(a, 1.0 / mag);
 }
 
 
-vector_3 vector_3_init(double x, double y, double z)
+vector_3 vector_3_init(long double x, long double y, long double z)
 {
   vector_3 res;
   res.x = x;
@@ -105,7 +105,7 @@ vector_3 vector_3_sub(vector_3 a, vector_3 b)
   return res;
 }
 
-vector_3 vector_3_scale(vector_3 a, double b)
+vector_3 vector_3_scale(vector_3 a, long double b)
 {
   vector_3 res;
   res.x = a.x * b;
@@ -114,19 +114,19 @@ vector_3 vector_3_scale(vector_3 a, double b)
   return res;
 }
 
-double vector_3_dot(vector_3 a, vector_3 b)
+long double vector_3_dot(vector_3 a, vector_3 b)
 {
-  return (double) a.x * b.x + a.y * b.y + a.z * b.z;
+  return (long double) a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-double vector_3_mag(vector_3 a)
+long double vector_3_mag(vector_3 a)
 {
   return sqrt(vector_3_dot(a, a));
 }
 
 vector_3 vector_3_norm(vector_3 a)
 {
-  double mag = vector_3_mag(a);
+  long double mag = vector_3_mag(a);
   if (mag <= 1e-8)
     return a;
   return vector_3_scale(a, 1.0 / mag);

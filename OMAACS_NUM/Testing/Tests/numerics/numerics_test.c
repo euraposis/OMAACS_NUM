@@ -19,7 +19,7 @@ void tearDown() {}
 */
 
 typedef struct teststate{
-  double x;
+  long double x;
 } teststate;
 
 void teststate_prop(void* result, void* state, void* direction, double dt)
@@ -52,11 +52,13 @@ void test_exp(){
 
 /**
  * setup the ode d²y/dt² = x;
+ * y(0) =  0
+ * this should be a sin function
 */
 
 struct statespace{
-  double x;
-  double v;
+  long double x;
+  long double v;
 };
 
 void statespace_prop(void* result, void* state, void* direction, double dt)
@@ -82,13 +84,21 @@ void test_sin()
   desc.state_size = sizeof(struct statespace);
 
   FILE* out_file = fopen("../output_data/test_sin.dat", "w");
-  for(unsigned int i = 0; i < 10000; i++)
+
+  long double a = 0;
+  long double b = 6.28318530718;
+
+  unsigned int n = 10000;
+
+  long double h = (b - a) / n;
+
+  for(unsigned int i = 0; i < n; i++)
   {
-    explicite_euler_cauchy(&desc, 0, 0.001);
-    fprintf(out_file, "%f %f\n", i * 0.001, ((teststate*)desc.state)->x);
+    explicite_euler_cauchy(&desc, 0, h);
+    fprintf(out_file, "%Lf %Lf\n", i * h, ((teststate*)desc.state)->x);
   }
   fclose(out_file);
-  TEST_ASSERT_DOUBLE_WITHIN(0.001, sin(1.0), (((teststate*)desc.state)->x));
+  TEST_ASSERT_DOUBLE_WITHIN(0.001, sin(b), (((teststate*)desc.state)->x));
 }
 
 void testnumerics()

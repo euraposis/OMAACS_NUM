@@ -58,7 +58,7 @@ void test_vector2_scaling()
   vector_2 a;
   a.x = 1;
   a.y = 2;
-  double b = 3.0;
+  long double b = 3.0;
   vector_2 res = vector_2_scale(a, b);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 3.0, res.x);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 6.0, res.y);
@@ -80,7 +80,7 @@ void test_vector2_dot()
   vector_2 b;
   b.x = 0;
   b.y = 1;
-  double res = vector_2_dot(a, b); // Should be 0 as they are perpendicular
+  long double res = vector_2_dot(a, b); // Should be 0 as they are perpendicular
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 0.0, res);
   a.x = 40;
   a.y = 0.1;
@@ -95,7 +95,7 @@ void test_vector2_mag()
   vector_2 a;
   a.x = 1;
   a.y = 0;
-  double res = vector_2_mag(a);
+  long double res = vector_2_mag(a);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 1.0, res);
   a.x = 50;
   a.y = 50;
@@ -190,7 +190,7 @@ void test_vector3_subtraction()
 void test_vector3_scaling()
 {
   vector_3 a = vector_3_init(1, 2, 3);
-  double b = 3.0;
+  long double b = 3.0;
   vector_3 res = vector_3_scale(a, b);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 3.0, res.x);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 6.0, res.y);
@@ -217,7 +217,7 @@ void test_vector3_dot()
 {
   vector_3 a = vector_3_init(1, 0, 0);
   vector_3 b = vector_3_init(0, 1, 0);
-  double res = vector_3_dot(a, b); // Should be 0 as they are perpendicular
+  long double res = vector_3_dot(a, b); // Should be 0 as they are perpendicular
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 0.0, res);
   a = vector_3_init(40, 0.1, 0);
   b = vector_3_init(0.5, 100, 0);
@@ -232,7 +232,7 @@ void test_vector3_dot()
 void test_vector3_mag()
 {
   vector_3 a = vector_3_init(1, 0, 0);
-  double res = vector_3_mag(a);
+  long double res = vector_3_mag(a);
   TEST_ASSERT_DOUBLE_WITHIN(1e-10, 1.0, res);
   a = vector_3_init(50, 50, 50);
   res = vector_3_mag(a);
