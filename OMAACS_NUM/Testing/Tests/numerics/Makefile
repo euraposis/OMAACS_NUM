@@ -34,10 +34,12 @@ name_test:
 	@echo "\nRunning $(TARGET_BASE1) Test\n"
 
 clean:
-	@rm -f $(BIN_DIR)$(TARGET1)
+	rm -f $(BIN_DIR)$(TARGET1)
 
 build:
+	@mkdir $(BIN_DIR) -p
 	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) $(LIB_INCLUDES) $(UNITY_INCLUDE_CONFIG) -o $(BIN_DIR)/$(TARGET1)
 
 run:
+	@mkdir ../output_data -p
 	@$(BIN_DIR)/$(TARGET1)

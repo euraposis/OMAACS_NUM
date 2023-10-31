@@ -37,6 +37,7 @@ clean:
 	@rm -f $(BIN_DIR)/$(TARGET1)
 
 build:
+	@mkdir $(BIN_DIR) -p
 	@$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) -o $(BIN_DIR)/$(TARGET1)
 
 run:
